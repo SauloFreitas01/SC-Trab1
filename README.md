@@ -1,4 +1,4 @@
-# SC-Trab1
+# CIC0201 - Segurança Computacional - Turma 01
 
 ### Saulo Oliveira de Freitas - 211000176
 
@@ -58,3 +58,17 @@ Em seguida, a função percorre cada caractere da mensagem cifrada e da keystrea
 Se o caractere não for uma letra, ele é mantido inalterado.
 
 Todos os caracteres decifrados são concatenados em uma única string e retornados como resultado da função.
+
+## Quebra de Cifra
+
+O método de quebra de cifra utilizado na função break_cipher é conhecido como análise de frequência. O intuito é explorar a distribuição de frequência das letras em um texto para tentar determinar a chave utilizada na cifra.
+
+A metodologia utilizada na função break_cipher é baseada na coincidência de índice. O índice de coincidência é uma medida estatística que indica a probabilidade de duas letras escolhidas aleatoriamente em um texto serem iguais. Em um texto em que as letras estão distribuídas uniformemente, o índice de coincidência é próximo de 0.0385.
+
+A estratégia utilizada na função é a seguinte:
+ - Determinar o tamanho da chave:
+   - A função percorre diferentes comprimentos possíveis da chave e calcula o índice de coincidência médio para cada um. Se o índice de coincidência médio for maior que um determinado limiar (0.06 neste caso), considera-se que esse comprimento pode ser o tamanho da chave.
+ - Quebrar a cifra para cada tamanho da chave possível
+   - Para cada tamanho de chave possível, a função divide o texto cifrado em substrings, onde cada substring contém os caracteres cifrados que estão a uma distância equivalente ao tamanho da chave. Em seguida, a função analisa a distribuição de frequência dos caracteres em cada substring e tenta encontrar o caractere da chave correspondente à letra mais frequente em cada substring.
+ - Descriptografar a mensagem
+   -  Com a chave possível, a função utiliza a função decipher para descriptografar a mensagem cifrada.
